@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AR Furniture Designer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
+    </script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-content">
+            <h1>AR Furniture Designer</h1>
+            <p>Design hjemmet ditt med møbler i 3D og AR</p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- INTRODUKSJON -->
+        <section class="intro">
+            <h2>Utforsk møblene våre</h2>
+            <p>
+                Velg et møbel og se hvordan det passer
+                i hjemmet ditt.
+            </p>
+        </section>
+
+        <!-- KATEGORIER -->
+        <section class="filters">
+            <button class="filter-btn active"
+                    data-category="alle">
+                Alle
+            </button>
+
+            <button class="filter-btn"
+                    data-category="sofa">
+                Sofaer
+            </button>
+
+            <button class="filter-btn"
+                    data-category="stol">
+                Stoler
+            </button>
+
+            <button class="filter-btn"
+                    data-category="bord">
+                Bord
+            </button>
+        </section>
+
+        <!-- FERDIG MØBELKATALOG -->
+        <section
+            id="furniture-grid"
+            class="furniture-grid">
+        </section>
+
+        <!-- LAST OPP EGNE 3D-MODELLER -->
+        <section class="upload-info">
+
+            <h2>Dine egne 3D-modeller</h2>
+
+            <p>
+                Last opp dine egne møbler og se
+                hvordan de passer i hjemmet ditt.
+            </p>
+
+            <label
+                for="model-upload"
+                class="upload-btn">
+                Velg 3D-modell
+            </label>
+
+            <input
+                type="file"
+                id="model-upload"
+                accept=".glb,model/gltf-binary"
+                hidden
+            >
+
+            <p id="upload-status"></p>
+
+            <!-- BRUKERENS OPPLASTEDE MODELLER -->
+            <div
+                id="uploaded-models"
+                class="furniture-grid">
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- 3D OG AR VISNING -->
+    <div
+        id="viewer-modal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title">
+
+        <div class="modal-content">
+
+            <button
+                id="close-modal"
+                class="close-btn"
+                aria-label="Lukk">
+                ×
+            </button>
+
+            <h2 id="modal-title"></h2>
+
+            <model-viewer
+                id="selected-model"
+                camera-controls
+                auto-rotate
+                ar
+                ar-modes="quick-look webxr scene-viewer"
+                shadow-intensity="1"
+                style="width: 100%; height: 400px;">
+
+                <button
+                    slot="ar-button"
+                    class="ar-button">
+                    Se i mitt rom
+                </button>
+
+            </model-viewer>
+
+            <p id="modal-description"></p>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
